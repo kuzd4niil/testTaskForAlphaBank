@@ -18,15 +18,13 @@ public class GifService {
     }
 
     public byte[] getImage(String tag) {
-        Object gif = gifClient.getRandomGif("Y9hegm0TadfWGDJUiExrTWJTjciR34g2", "rich");
+        Object jsonGif = gifClient.getRandomGif("Y9hegm0TadfWGDJUiExrTWJTjciR34g2", "rich");
 
         Gson gson = new Gson();
 
-        String json = gson.toJson(gif);
+        String json = gson.toJson(jsonGif);
         JsonObject jsonObject = (JsonObject) JsonParser.parseString(json);
 
-        byte[] webpImage = webpClient.getWebp(jsonObject.get("data").getAsJsonObject().get("id").getAsString());
-
-        return webpImage;
+        return webpClient.getWebp(jsonObject.get("data").getAsJsonObject().get("id").getAsString());
     }
 }
