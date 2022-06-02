@@ -4,23 +4,30 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.kuzd4niil.testTaskForAlphaBank.clients.ExchangeRatesClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 @Service
 public class ExchangeRatesService {
     private ExchangeRatesClient exchangeRatesClient;
+    @Value("${openexchangerates.appId}")
+    private String appId;
+    @Value("${openexchangerates.baseCurrency}")
+    private String baseCurrency;
 
     public ExchangeRatesService(ExchangeRatesClient exchangeRatesClient) {
         this.exchangeRatesClient = exchangeRatesClient;
     }
 
     public boolean compareExchangeRatesTodayAndYesterday(String rateCurrency) {
-        Object jsonExchangeRates = exchangeRatesClient.getTodayExchangeRates("bd0b1b8081c848bf98d690dc6c0bb2e8", "USD");
+        // Получаем курсы валют за сегодняшний день
+        Object jsonExchangeRates = exchangeRatesClient.getTodayExchangeRates(appId, baseCurrency);
 
         Gson gson = new Gson();
 
@@ -33,7 +40,10 @@ public class ExchangeRatesService {
 
         DateFormat dateFormat = new SimpleDateFormat(dateFormatString);
 
-        jsonExchangeRates = exchangeRatesClient.getSpecificDateExchangeRates(dateFormat.format(new Date()), "bd0b1b8081c848bf98d690dc6c0bb2e8", "USD");
+        Date yesterday = new Date(new Date().getTime() - (1000 * 60 * 60 * 24));
+
+        // Получаем курсы валют за вчерашний день
+        jsonExchangeRates = exchangeRatesClient.getSpecificDateExchangeRates(dateFormat.format(yesterday), appId, baseCurrency);
 
         json = gson.toJson(jsonExchangeRates);
         jsonObject = (JsonObject) JsonParser.parseString(json);

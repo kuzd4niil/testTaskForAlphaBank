@@ -1,4 +1,4 @@
-package org.kuzd4niil.testTaskForAlphaBank.controller;
+package org.kuzd4niil.testTaskForAlphaBank.controllers;
 
 import org.kuzd4niil.testTaskForAlphaBank.services.ExchangeRatesService;
 import org.kuzd4niil.testTaskForAlphaBank.services.GifService;
@@ -23,6 +23,6 @@ public class ExchangeRatesController {
     public byte[] getGif(@RequestParam(value = "rate_currency") String rateCurrency) {
         String tag = exchangeRatesService.compareExchangeRatesTodayAndYesterday(rateCurrency) ? "rich" : "broke";
 
-        return gifService.getImage("rich");
+        return gifService.getImage(tag);
     }
 }
