@@ -1,20 +1,28 @@
 package org.kuzd4niil.testTaskForAlphaBank.clients;
 
-import feign.Param;
-import feign.RequestLine;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.LinkedHashMap;
+
+@FeignClient(name = "${openExchangeRates.httpEndpointName}", url = "${openExchangeRates.httpEndpoint}")
 public interface ExchangeRatesClient {
 
-    @RequestLine("GET /historical/{date}.json?app_id={app_id}&base={base_currency}")
+    @GetMapping("historical/{date}.json")
     public Object getSpecificDateExchangeRates(
-            @Param(value = "date") String date,
-            @Param(value = "app_id") String appId,
-            @Param(value = "base_currency") String baseCurrency
+            @PathVariable(value = "date") String date,
+            @RequestParam(value = "app_id") String appId,
+            @RequestParam(value = "base_currency") String baseCurrency
     );
 
-    @RequestLine("GET /latest.json?app_id={app_id}&base={base_currency}")
+    @GetMapping("latest.json")
     public Object getTodayExchangeRates(
-            @Param(value = "app_id") String appId,
-            @Param(value = "base_currency") String baseCurrency
+            @RequestParam(value = "app_id") String appId,
+            @RequestParam(value = "base_currency") String baseCurrency
     );
+
+    @GetMapping("currencies.json")
+    public LinkedHashMap<String, String> getCurrencies();
 }

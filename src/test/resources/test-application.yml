@@ -1,0 +1,8 @@
+giphy:
+  apiKey: Y9hegm0TadfWGDJUiExrTWJTjciR34g2
+  httpEndpoint: https://localhost:9561/v1/gifs/random
+  mediaEndpoint: https://localhost:9561/media
+openExchangeRates:
+  appId: bd0b1b8081c848bf98d690dc6c0bb2e8
+  baseCurrency: USD
+  httpEndpoint: https://localhost:9561/api

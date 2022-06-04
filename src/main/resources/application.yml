@@ -1,0 +1,11 @@
+giphy:
+  apiKey: Y9hegm0TadfWGDJUiExrTWJTjciR34g2
+  httpEndpoint: https://api.giphy.com/v1/gifs/random
+  mediaEndpoint: https://i.giphy.com/media
+  httpEndpointName: restClientForGetJSONStructAboutGif
+  mediaEndpointName: restClientForGetGif
+openExchangeRates:
+  appId: bd0b1b8081c848bf98d690dc6c0bb2e8
+  httpEndpoint: https://openexchangerates.org/api
+  baseCurrency: USD
+  httpEndpointName: restClientForGetRatesCurrency

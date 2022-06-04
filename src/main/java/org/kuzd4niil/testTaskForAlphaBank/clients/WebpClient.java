@@ -1,12 +1,14 @@
 package org.kuzd4niil.testTaskForAlphaBank.clients;
 
-import feign.Param;
-import feign.RequestLine;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+@FeignClient(name = "${giphy.mediaEndpointName}", url = "${giphy.mediaEndpoint}")
 public interface WebpClient {
 
-    @RequestLine("GET /{webp_id}/giphy.webp")
+    @GetMapping("{webp_id}/giphy.webp")
     public byte[] getWebp(
-            @Param(value = "webp_id") String webpId
+            @RequestParam(value = "webp_id") String webpId
     );
 }

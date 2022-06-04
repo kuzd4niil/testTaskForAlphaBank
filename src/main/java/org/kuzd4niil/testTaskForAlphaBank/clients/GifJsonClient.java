@@ -1,13 +1,15 @@
 package org.kuzd4niil.testTaskForAlphaBank.clients;
 
-import feign.Param;
-import feign.RequestLine;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+@FeignClient(name = "${giphy.httpEndpointName}", url = "${giphy.httpEndpoint}")
 public interface GifJsonClient {
 
-    @RequestLine("GET ?api_key={api_key}&tag={tag}")
+    @GetMapping
     public Object getRandomGif(
-            @Param(value = "api_key") String apiKey,
-            @Param(value = "tag") String tag
+            @RequestParam(value = "api_key") String apiKey,
+            @RequestParam(value = "tag") String tag
     );
 }
