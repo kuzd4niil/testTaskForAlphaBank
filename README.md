@@ -14,7 +14,12 @@ user:<project_dir>$ java -jar build/libs/testTaskForAlphaBank-0.0.1-SNAPSHOT.jar
 ### OpenAPI:
 Описание конечной точки [OpenAPI](http://localhost:8080/v3/api-docs) (программа должна быть запущена)
 ## Docker:
-Авоматическая сборка Dockerfile и его запуск:
+Ручная сборка и запуск Dockerfile:
+```
+user:<project_dir>$ docker build -t <имя образа> .
+user:<project_dir>$ docker run -d -p 8080:8080 --name <имя контейнера> <имя образа>
+```
+Авоматическая сборка Dockerfile и его запуск при помощи docker-compose:
 ```
 user:<project_dir>$ docker-compose up -d
 ```

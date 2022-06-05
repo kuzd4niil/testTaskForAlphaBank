@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -34,9 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class TestTaskForAlphaBankApplicationTests {
 
 	MockMvc mvc;
-//	@Value("${openExchangeRates.appId}")
 	static String appId = "bd0b1b8081c848bf98d690dc6c0bb2e8";
-//	@Value("${giphy.apiKey}")
 	static String apiKey = "Y9hegm0TadfWGDJUiExrTWJTjciR34g2";
 	static String expectedContentType;
 	static String expectedRedirectUrl;
