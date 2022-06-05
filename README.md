@@ -6,9 +6,11 @@ user:<project_dir>$ ./gradlew build
 user:<project_dir>$ java -jar build/libs/testTaskForAlphaBank-0.0.1-SNAPSHOT.jar
 ```
 ### Пример использования:
-По адресу [localhost:8080/api/v1/compare_rate?rate_currency=<код валюты>]()
+По адресу [localhost:8080/api/v1/compare_rate?rate_currency=<код валюты>]() или [localhost:8080/api/v1/redirect_compare_rate?rate_currency=<код валюты>]()
 
-Для рубля будет так: [localhost:8080/api/v1/compare_rate?rate_currency=RUB](localhost:8080/api/v1/compare_rate?rate_currency=RUB)
+Для рубля будет так: [localhost:8080/api/v1/compare_rate?rate_currency=RUB](localhost:8080/api/v1/compare_rate?rate_currency=RUB) или [localhost:8080/api/v1/redirect_compare_rate?rate_currency=RUB](localhost:8080/api/v1/redirect_compare_rate?rate_currency=RUB)
+
+compare_rate и redirect_compare_rate отлчиются тем, что первый загружает файл сперва на сервер, а потом отправляет его клиенту, а второй отправляет redirect на само изображение, чтобы уже сам клиент мог скачать его и не нагружать лишгий раз сервер
 
 Если валюты не существует, то придёт картинка [cherry.webp](https://simpl.info/webp/cherry.webp)
 ### OpenAPI:
